@@ -29,18 +29,6 @@
         buildInputs = buildInputs;
         shellHook = "";
       };
-
-      systemd.services.monitor = {
-        enable = true;
-        description = "Monitor website uptime";
-        wantedBy = [ "multi-user.target" ];
-        unitConfig = {
-          Type = "sinmple";
-        };
-        serviceConfig = {
-          execStart = "${self.monitor}";
-        };
-      };
       packages.default = monitor;
     }
   );
