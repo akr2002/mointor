@@ -7,6 +7,10 @@ Report website's status
 nix run github:akr2002/monitor
 ```
 ### Persistent
+Add the following line to your `flake.nix`
+```nix
+inputs.monitor.url = "github/akr2002:monitor";
+```
 Add the following to your `home.nix`
 ```nix
 systemd.user.timers.monitor = {
