@@ -25,7 +25,7 @@ def log_status(message):
 
 
 def notify_user(message):
-    subprocess.run(["notify-send", "Monitor", message])
+    subprocess.run(["notify-send", "-a", "Monitor", message])
 
 
 websites = [
