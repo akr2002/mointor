@@ -2,15 +2,19 @@
 
 from datetime import datetime
 import requests
+import subprocess
 
 
 def check_website(url):
     try:
         response = requests.get(url)
         if response.status_code == 200:
-            log_status(f"{url} is up and running.")
+            MESSAGE_UP = f"{url} is up and running"
+            log_status(MESSAGE_UP)
         else:
-            log_status(f"{url} is down. Status code: {response.status_code}")
+            MESSAGE_DOWN = f"{url} is down. Status code: {response.status_code}"
+            notify_user(MESSAGE_DOWN)
+            log_status(MESSAGE_DOWN)
     except requests.exceptions.RequestException as e:
         print(f"Error: {e}")
 
@@ -18,6 +22,10 @@ def check_website(url):
 def log_status(message):
     with open("/home/user/.logs/monitor.log", "a+") as log_file:
         log_file.write(f"{datetime.now()} - {message}\n")
+
+
+def notify_user(message):
+    subprocess.run(["notify-send", "Monitor", message])
 
 
 websites = [

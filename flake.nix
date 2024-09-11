@@ -13,6 +13,7 @@
         inherit system;
       };
       buildInputs = with pkgs; [
+        libnotify
         (python3.withPackages(ps: with ps; [
           ipython
           requests
